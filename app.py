@@ -4,7 +4,7 @@ import time
 
 app = Flask(__name__)
 
-AUTH_SERVICE_URL = "https://auth_service-klbd.onrender.com/verify"
+AUTH_SERVICE_URL = "https://auth-service-klbd.onrender.com/verify"
 
 RATE_LIMIT = {}
 MAX_REQUESTS = 5
@@ -38,6 +38,7 @@ def odd_numbers(n):
    auth_response = requests.post(
       AUTH_SERVICE_URL,
       headers={"X-API-KEY": api_key},
+      timeout=5
       )    
    if auth_response.status_code != 200:
       return jsonify({"error": "Unauthorized"}), 403
