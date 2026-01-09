@@ -10,13 +10,16 @@ RATE_LIMIT = {}
 MAX_REQUESTS = 5
 WINDOW = 60 #seconds
 
-@app.route("/odd/<int:n>")
+@app.route("/odd/<int:n>", methods=["GET"])
 def odd_numbers(n):
 
    # get api key First
    api_key = request.headers.get("X-API-KEY")
    if not api_key:
      return jsonify({"error": "API key required"}), 401
+   
+
+   print("sending Api key to auth:", api_key)
    
    #rate limiting
    current_time = time.time()
